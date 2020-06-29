@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Monstermaker</title>
+    <meta
+      name="description"
+      content="Steemmonsters monstermaker: create your own cards now!"
+    />
+    <meta name="author" content="martibis" />
+
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Boogaloo|Open+Sans"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="CSS/reset.css" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Would recommend downloading JQuery and run it w/o the CDN -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="JS/html2canvas.min.js"></script>
+    <script src="JS/scripts.js"></script>
+  </head>
+
+  <body>
+    <div class="card-options">
+      <p class="option-title">Name</p>
+      <input type="text" value="Monster" class="name-input" />
+      <p class="option-title">Imagelink</p>
+      <input type="url" class="image-input" />
+      <p class="option-title">Cost</p>
+      <input type="number" step="1" value="1" min="0" max="99" class="cost-input" />
+      <div class="splinter-option">
+        <p class="option-title">Choose splinter</p>
+        <select>
+          <option value="neutral" selected>Neutral</option>
+          <option value="death">Death</option>
+          <option value="dragon">Dragon</option>
+          <option value="earth">Earth</option>
+          <option value="fire">Fire</option>
+          <option value="life">Life</option>
+          <option value="water">Water</option>
+        </select>
+      </div>
+      <div class="rarity-option">
+        <p class="option-title">Choose rarity</p>
+        <select>
+          <option value="common" selected>Common</option>
+          <option value="rare">Rare</option>
+          <option value="epic">Epic</option>
+          <option value="legendary">Legendary</option>
+        </select>
+      </div>
+      <div class="attack-option">
+        <p class="option-title">Choose attack type</p>
+        <select>
+          <option value="melee" selected>Melee</option>
+          <option value="ranged">Ranged</option>
+          <option value="magic">Magic</option>
+        </select>
+      </div>
+    </div>
+    <div class="card-options image-maker">
+      <div class="preview" id="preview">
+        <img
+          src="IMG/splinter-card/neutral.png"
+          class="z10 card absolute-img"
+        />
+        <img src="" class="z9 card-bg absolute-img" />
+        <img
+          src="IMG/banners/normal-banner.png"
+          class="absolute-img z15 banner"
+        />
+        <img src="IMG/rarity/common-bg.png" class="rarity absolute-img z15" />
+        <img
+          src="IMG/splinter-icon/neutral-icon.png"
+          class="card-icon absolute-img z20"
+        />
+        <img
+          src="IMG/stats/defense.png"
+          class="armor z20 icon-size absolute-img"
+        />
+        <img
+          src="IMG/stats/melee-attack.png"
+          class="attack z20 icon-size absolute-img"
+        />
+        <img
+          src="IMG/stats/speed.png"
+          class="speed z20 icon-size absolute-img"
+        />
+        <img
+          src="IMG/stats/health.png"
+          class="health z20 icon-size absolute-img"
+        />
+        <img
+          src="IMG/stats/stat_bg_mana.png"
+          class="mana z20 icon-size absolute-img"
+        />
+        <div class="banner-text z25">
+          <p class="name">Monster</p>
+          <p class="card-lvl">★ 1</p>
+        </div>
+        <p class="cost-value stat "></p>
+        <p class="attack-value stat"></p>
+        <p class="armor-value stat"></p>
+        <p class="health-value stat"></p>
+        <p class="speed-value stat"></p>
+        <div class="card-abilities"></div>
+      </div>
+      <button class="full-width download-card">CREATE DOWNLOADABLE IMAGE</button>
+      <p class="intro-text text-center">Right click the below image, and click save!</p>
+    </div>
+
+    <div class="card-options">
+      
+      <div class="lvl-title">
+        <button class="prev-lvl">PREV</button>
+        <h4 class="current-lvl-title">LVL 1:</h4>
+        <button class="next-lvl">NEXT</button>
+      </div>
+      <div class="stats">
+        <div class="att-option">
+          <p class="option-title">Attack</p>
+          <input type="number" step="1" min="0" max="99" value="1" />
+        </div>
+        <div class="speed-option ">
+          <p class="option-title">Speed</p>
+          <input type="number" step="1" min="1" max="99" value="1" />
+        </div>
+        <div class="armor-option ">
+          <p class="option-title">Armor</p>
+          <input type="number"step="1"  min="0" max="99" value="1" />
+        </div>
+        <div class="health-option ">
+          <p class="option-title">Health</p>
+          <input type="number" step="1" min="1" max="99" value="1" />
+        </div>
+      </div>
+
+      <div class="ability-options"></div>
+    </div>
+
+    <div class="card-options">
+      <table class="lvl-summary" id="lvl-summary">
+        <tr>
+          <th>lvl</th>
+          <th>att</th>
+          <th>speed</th>
+          <th>armor</th>
+          <th>health</th>
+          <th>abilities</th>
+        </tr>
+        <tr>
+          <td class="lvl-stat">1</td>
+          <td class="att-stat"></td>
+          <td class="speed-stat"></td>
+          <td class="armor-stat"></td>
+          <td class="health-stat"></td>
+          <td class="lvl-abilities"></td>
+        </tr>
+        <tr>
+          <td class="lvl-stat">2</td>
+          <td class="att-stat"></td>
+          <td class="speed-stat"></td>
+          <td class="armor-stat"></td>
+          <td class="health-stat"></td>
+          <td class="lvl-abilities"></td>
+        </tr>
+        <tr>
+          <td class="lvl-stat">3</td>
+          <td class="att-stat"></td>
+          <td class="speed-stat"></td>
+          <td class="armor-stat"></td>
+          <td class="health-stat"></td>
+          <td class="lvl-abilities"></td>
+        </tr>
+        <tr>
+          <td class="lvl-stat">4</td>
+          <td class="att-stat"></td>
+          <td class="speed-stat"></td>
+          <td class="armor-stat"></td>
+          <td class="health-stat"></td>
+          <td class="lvl-abilities"></td>
+        </tr>
+        <tr>
+          <td class="lvl-stat">5</td>
+          <td class="att-stat"></td>
+          <td class="speed-stat"></td>
+          <td class="armor-stat"></td>
+          <td class="health-stat"></td>
+          <td class="lvl-abilities"></td>
+        </tr>
+        <tr>
+          <td class="lvl-stat">6</td>
+          <td class="att-stat"></td>
+          <td class="speed-stat"></td>
+          <td class="armor-stat"></td>
+          <td class="health-stat"></td>
+          <td class="lvl-abilities"></td>
+        </tr>
+        <tr>
+          <td class="lvl-stat">7</td>
+          <td class="att-stat"></td>
+          <td class="speed-stat"></td>
+          <td class="armor-stat"></td>
+          <td class="health-stat"></td>
+          <td class="lvl-abilities"></td>
+        </tr>
+        <tr>
+          <td class="lvl-stat">8</td>
+          <td class="att-stat"></td>
+          <td class="speed-stat"></td>
+          <td class="armor-stat"></td>
+          <td class="health-stat"></td>
+          <td class="lvl-abilities"></td>
+        </tr>
+        <tr>
+          <td class="lvl-stat">9</td>
+          <td class="att-stat"></td>
+          <td class="speed-stat"></td>
+          <td class="armor-stat"></td>
+          <td class="health-stat"></td>
+          <td class="lvl-abilities"></td>
+        </tr>
+        <tr>
+          <td class="lvl-stat">10</td>
+          <td class="att-stat"></td>
+          <td class="speed-stat"></td>
+          <td class="armor-stat"></td>
+          <td class="health-stat"></td>
+          <td class="lvl-abilities"></td>
+        </tr>
+      </table>
+      <button class="full-width download-stats">DOWNLOAD ALL STATS</button>
+    </div>
+    <div class="card-options">
+      <p class="intro-text">
+        <strong
+          ><a target="_blank" href="https://www.steemit.com/@martibis"
+            >Want to see more? Donate to @martibis!</a
+          ></strong
+        ><br /><br /><strong>Cool stuff I might do:</strong><br />
+        - Golden cards<br>
+        - One click export (img for each lvl + stats)<br />
+        - Custom abilities<br>
+        - Save your card<br />
+        - See other Steemians cards<br />
+        - Upvote other cards (steemconnect)<br /><br />
+        You can currently already create a card, including different stats for
+        each lvl. An export feature has not been coded yet though, at the moment
+        the best way to export your cards in order to share them with others is
+        by taking a screenshot of the card at each lvl and a screenshot of the
+        stats. Afterwards you can put these images in your post!<br /><br />Putting
+        your newly created card on Steem? Consider using the tag
+        <strong>'monstermaker'</strong> so I can come check out your work! ;)
+      </p>
+    </div>
+  </body>
+</html>
